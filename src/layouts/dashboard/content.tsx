@@ -33,7 +33,8 @@ export function DashboardContent({
           flex: '1 1 auto',
           flexDirection: 'column',
           pt: 'var(--layout-dashboard-content-pt)',
-          pb: 'var(--layout-dashboard-content-pb)',
+          // pb: 'var(--layout-dashboard-content-pb)',
+          pb: '6rem !important',
           [theme.breakpoints.up(layoutQuery)]: {
             px: 'var(--layout-dashboard-content-px)',
           },

@@ -1,15 +1,20 @@
 import type { Breakpoint } from '@mui/material/styles';
 
 import { merge } from 'es-toolkit';
+import { Icon } from '@iconify/react';
+import React, { useState } from 'react';
 import { useBoolean } from 'minimal-shared/hooks';
 
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
+import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
 import { _langs, _notifications } from 'src/_mock';
 
@@ -33,7 +38,6 @@ import { NotificationsPopover } from '../components/notifications-popover';
 import type { MainSectionProps } from '../core/main-section';
 import type { HeaderSectionProps } from '../core/header-section';
 import type { LayoutSectionProps } from '../core/layout-section';
-
 
 // ----------------------------------------------------------------------
 
@@ -67,14 +71,25 @@ export function DashboardLayout({
 
     const headerSlots: HeaderSectionProps['slots'] = {
       topArea: (
-        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2} sx={{ p: 1, bgcolor: '#EAF3FF' }}>
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          spacing={2}
+          sx={{ p: 1, bgcolor: '#EAF3FF' }}
+        >
           <Typography variant="caption" color="primary">
             Philippines Number 1 Small Town Online Lottery App
           </Typography>
-          <Button variant="contained" size="small" color="warning" sx={{ borderRadius: '999px',  textWrap: 'nowrap', px: 2, height: 32 }}>
+          <Button
+            variant="contained"
+            size="small"
+            color="warning"
+            sx={{ borderRadius: '999px', textWrap: 'nowrap', px: 2, height: 32 }}
+          >
             Download App
           </Button>
-           {/* <IconButton size="small" sx={{ ml: 1, borderRadius: '999px' }}>
+          {/* <IconButton size="small" sx={{ ml: 1, borderRadius: '999px' }}>
             <Iconify icon="solar:restart-bold" width={18} height={18} />
           </IconButton> */}
         </Stack>
@@ -86,7 +101,7 @@ export function DashboardLayout({
             onClick={onOpen}
             sx={{ mr: 1, ml: -1, [theme.breakpoints.up(layoutQuery)]: { display: 'none' } }}
           />
-          <Logo sx={{ mr: 1, [theme.breakpoints.up(layoutQuery)]: { display: 'none' } }}/>
+          <Logo sx={{ mr: 1, [theme.breakpoints.up(layoutQuery)]: { display: 'none' } }} />
           <NavMobile data={navData} open={open} onClose={onClose} workspaces={_workspaces} />
         </>
       ),
@@ -122,7 +137,25 @@ export function DashboardLayout({
     );
   };
 
-  const renderFooter = () => null;
+   const [value, setValue] = React.useState(0);
+
+  const renderFooter = () => (
+    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 'var(--layout-nav-zIndex)' }} elevation={3}>
+      <BottomNavigation
+        showLabels
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+      >
+        <BottomNavigationAction label="Home" icon={<Icon icon="solar:home-2-line-duotone" width="22" height="22" />} />
+        <BottomNavigationAction label="Results" icon={<Icon icon="fluent:number-circle-8-24-regular" width="22" height="22" />} />
+        <BottomNavigationAction label="Payouts" icon={<Icon icon="solar:money-bag-line-duotone" width="22" height="22" />} />
+        <BottomNavigationAction label="Wallet" icon={<Icon icon="solar:wallet-line-duotone" width="22" height="22" />} />
+        <BottomNavigationAction label="Account" icon={<Icon icon="solar:user-rounded-line-duotone" width="22" height="22" />} />
+      </BottomNavigation>
+    </Paper>
+  );
 
   const renderMain = () => <MainSection {...slotProps?.main}>{children}</MainSection>;
 

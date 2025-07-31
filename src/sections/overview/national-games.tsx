@@ -1,14 +1,7 @@
 import React from 'react';
 
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  Button,
-  Stack,
-  Avatar,
-} from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import { Box, Card, CardContent, Typography, Button, Stack } from '@mui/material';
 
 type Draw = {
   time: string;
@@ -18,13 +11,13 @@ type Draw = {
 type GameData = {
   image: string;
   logo: string;
-  color: 'red' | 'blue' | 'gold' | 'purple';
+  color: 'red' | 'blue' | 'yellow' | 'purple';
   draws: Draw[];
 };
 
 const gamesData: GameData[] = [
   {
-    image: '/assets/images/carousel/slide1.jpg',
+    image: '/assets/images/games/2d.png',
     logo: '2D',
     color: 'red',
     draws: [
@@ -34,7 +27,7 @@ const gamesData: GameData[] = [
     ],
   },
   {
-    image: '/assets/images/carousel/slide1.jpg',
+    image: '/assets/images/games/3d.png',
     logo: '3D',
     color: 'blue',
     draws: [
@@ -44,13 +37,13 @@ const gamesData: GameData[] = [
     ],
   },
   {
-    image: '/assets/images/carousel/slide1.jpg',
+    image: '/assets/images/games/4d.png',
     logo: '4D',
-    color: 'gold',
+    color: 'yellow',
     draws: [{ time: '9:00PM', numbers: ['06', '03', '04', '09'] }],
   },
   {
-    image: '/assets/images/carousel/slide1.jpg',
+    image: '/assets/images/games/6d.png',
     logo: '6D',
     color: 'purple',
     draws: [{ time: '9:00PM', numbers: ['04', '03', '01', '05', '06', '08'] }],
@@ -59,58 +52,53 @@ const gamesData: GameData[] = [
 
 const getColor = (color: string): string => {
   switch (color) {
-    case 'red':
-      return '#f44336';
     case 'blue':
-      return '#2196f3';
-    case 'gold':
-      return '#fbc02d';
+      return 'radial-gradient(circle at top left, #4C9BFF 0%, #0066E7 55%, #0058C8 85%, #0058C8 100%)';
+    case 'red':
+      return 'radial-gradient(circle at top left, #FF4C4C 0%, #DB0100 55%, #BE0200 85%, #BE0200 100%)';
+    case 'yellow':
+      return 'radial-gradient(circle at top left, #FFE86C 0%, #EDC800 55%, #D8B600 85%, #D8B600 100%)';
     case 'purple':
-      return '#9c27b0';
+      return 'radial-gradient(circle at top left, #AB3CFF 0%, #8300E7 55%, #7300CA 85%, #7300CA 100%)';
+    case 'orange':
+      return 'radial-gradient(circle at top left, #FF9C35 0%, #F18009 55%, #D56D00 85%, #D56D00 100%)';
+    case 'cyan':
+      return 'radial-gradient(circle at top left, #9DFCFF 0%, #4CDDE1 55%, #2BBFC3 85%, #2BBFC3 100%)';
     default:
       return '#ccc';
   }
 };
 
+
 export const NationalGames: React.FC = () => (
-  <Box>
-    <Typography variant="h4" fontWeight="bold" color="text.primary" mb={3}>
-      National Games
-    </Typography>
-    
+  <Box sx={{ mb: 3}}>
     <Stack spacing={2}>
       {gamesData.map((game, index) => (
-        <Card key={index} sx={{ backgroundColor: '#E9F3FF', borderRadius: 2 }}>
-          <CardContent sx={{ p: 3 }}>
+        <Card key={index} sx={{ backgroundColor: '#fff', borderRadius: 2 }}>
+          <CardContent sx={{ p: 2 }}>
             <Stack direction="row" alignItems="center" justifyContent="space-between" mb={3}>
               <Stack direction="row" spacing={2} alignItems="center">
                 <Avatar
                   variant="rounded"
+                  src={game.image}
+                  alt={game.logo}
                   sx={{
-                    bgcolor: getColor(game.color),
+                    bgcolor: 'white',
+                    color: getColor(game.color),
                     width: 50,
                     height: 50,
                     borderRadius: 1.2,
                   }}
-                >
-                  <Stack direction="row" alignItems="baseline" spacing={0.5}>
-                    <Typography variant="body2" fontWeight="bold" color="white">
-                      {game.logo}
-                    </Typography>
-                    <Typography variant="caption" color="white" sx={{ fontSize: '8px' }}>
-                      LOTTO
-                    </Typography>
-                  </Stack>
-                </Avatar>
+                />
                 <Typography variant="subtitle1" fontWeight="bold" color="text.primary">
                   Winning Numbers
                 </Typography>
               </Stack>
 
-              <Button 
-                variant="contained" 
-                sx={{ 
-                  bgcolor: '#D4070F', 
+              <Button
+                variant="contained"
+                sx={{
+                  bgcolor: '#D4070F',
                   '&:hover': { bgcolor: '#b71c1c' },
                   px: 2,
                   py: 0.5,
@@ -126,16 +114,16 @@ export const NationalGames: React.FC = () => (
             <Stack direction="row" justifyContent="space-between" alignItems="center">
               {game.draws.map((draw, drawIndex) => (
                 <Stack key={drawIndex} alignItems="center" spacing={1}>
-                  <Stack direction="row" spacing={0.5}>
+                  <Stack direction="row" spacing={0.75}>
                     {draw.numbers.map((num, numIndex) => (
                       <Box
                         key={numIndex}
                         sx={{
-                          width: game.logo === '3D' ? 28 : 32,
-                          height: game.logo === '3D' ? 28 : 32,
+                          width: game.logo === '3D' ? 28 : 36,
+                          height: game.logo === '3D' ? 28 : 36,
                           borderRadius: '50%',
-                          backgroundColor: getColor(game.color),
-                          color: '#fff',
+                          background: getColor(game.color),
+                          color: game.color === 'yellow' ? "#000" : '#fff',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
