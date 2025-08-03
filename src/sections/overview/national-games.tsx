@@ -11,44 +11,14 @@ type Draw = {
 type GameData = {
   image: string;
   logo: string;
-  color: 'red' | 'blue' | 'yellow' | 'purple';
+  color: 'red' | 'blue' | 'yellow' | 'purple' | 'orange' | 'cyan';
   draws: Draw[];
 };
 
-const gamesData: GameData[] = [
-  {
-    image: '/assets/images/games/2d.png',
-    logo: '2D',
-    color: 'red',
-    draws: [
-      { time: '2:00PM', numbers: ['22', '19'] },
-      { time: '5:00PM', numbers: ['01', '11'] },
-      { time: '9:00PM', numbers: ['02', '17'] },
-    ],
-  },
-  {
-    image: '/assets/images/games/3d.png',
-    logo: '3D',
-    color: 'blue',
-    draws: [
-      { time: '2:00PM', numbers: ['07', '03', '09'] },
-      { time: '5:00PM', numbers: ['03', '04', '06'] },
-      { time: '9:00PM', numbers: ['02', '01', '09'] },
-    ],
-  },
-  {
-    image: '/assets/images/games/4d.png',
-    logo: '4D',
-    color: 'yellow',
-    draws: [{ time: '9:00PM', numbers: ['06', '03', '04', '09'] }],
-  },
-  {
-    image: '/assets/images/games/6d.png',
-    logo: '6D',
-    color: 'purple',
-    draws: [{ time: '9:00PM', numbers: ['04', '03', '01', '05', '06', '08'] }],
-  },
-];
+interface NationalGamesProps {
+  gamesData: GameData[];
+  onPlayClick?: (gameIndex: number) => void;
+}
 
 const getColor = (color: string): string => {
   switch (color) {
@@ -69,9 +39,11 @@ const getColor = (color: string): string => {
   }
 };
 
-
-export const NationalGames: React.FC = () => (
-  <Box sx={{ mb: 3}}>
+export const NationalGames: React.FC<NationalGamesProps> = ({ 
+  gamesData, 
+  onPlayClick 
+}) => (
+  <Box sx={{ mb: 3 }}>
     <Stack spacing={2}>
       {gamesData.map((game, index) => (
         <Card key={index} sx={{ backgroundColor: '#fff', borderRadius: 2 }}>
@@ -96,7 +68,9 @@ export const NationalGames: React.FC = () => (
               </Stack>
 
               <Button
+                className="animated infinite pulse"
                 variant="contained"
+                onClick={() => onPlayClick?.(index)}
                 sx={{
                   bgcolor: '#D4070F',
                   '&:hover': { bgcolor: '#b71c1c' },
@@ -147,3 +121,6 @@ export const NationalGames: React.FC = () => (
     </Stack>
   </Box>
 );
+
+// Export types for use in parent components
+export type { GameData, Draw };

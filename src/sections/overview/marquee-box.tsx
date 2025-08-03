@@ -64,19 +64,6 @@ export const MarqueeBox: React.FC<MarqueeBoxProps> = ({ text, speed = 20 }) => {
           </Typography>
         </Box>
       </Box>
-
-      <style>
-        {`
-          @keyframes marquee {
-            0% {
-              transform: translateX(0%);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-        `}
-      </style>
     </Box>
   );
 };
