@@ -23,6 +23,7 @@ export const MarqueeBox: React.FC<MarqueeBoxProps> = ({ text, speed = 20 }) => {
         overflow: 'hidden',
         backgroundColor: '#D4070F',
         color: 'white',
+        borderRadius: { sm: 0, lg: 1 },
         py: 1,
         mb: 2,
       }}

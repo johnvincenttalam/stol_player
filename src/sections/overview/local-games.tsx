@@ -94,10 +94,7 @@ export const LocalGames: React.FC<LocalGamesProps> = ({ data }) => (
                   borderRadius: 0.75,
                   backgroundColor: '#fff',
                   padding: '2px',
-                  transition: 'transform 0.2s ease',
-                  '&:hover': {
-                    transform: 'scale(1.1)',
-                  },
+                  transition: 'transform 0.2s ease'
                 }}
               />
             ))}

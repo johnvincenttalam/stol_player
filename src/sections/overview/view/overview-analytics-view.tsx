@@ -34,7 +34,7 @@ export function OverviewAnalyticsView() {
         // For demo purposes, using static data
         const data: GameData[] = [
           {
-            image: '/assets/images/games/2d.png',
+            image: '/assets/images/games/2D_lotto.png',
             logo: '2D',
             color: 'red',
             draws: [
@@ -44,7 +44,7 @@ export function OverviewAnalyticsView() {
             ],
           },
           {
-            image: '/assets/images/games/3d.png',
+            image: '/assets/images/games/3D_lotto.png',
             logo: '3D',
             color: 'blue',
             draws: [
@@ -54,13 +54,13 @@ export function OverviewAnalyticsView() {
             ],
           },
           {
-            image: '/assets/images/games/4d.png',
+            image: '/assets/images/games/4D_lotto.png',
             logo: '4D',
             color: 'yellow',
             draws: [{ time: '9:00PM', numbers: ['06', '03', '04', '09'] }],
           },
           {
-            image: '/assets/images/games/6d.png',
+            image: '/assets/images/games/6D_lotto.png',
             logo: '6D',
             color: 'purple',
             draws: [{ time: '9:00PM', numbers: ['04', '03', '01', '05', '06', '08'] }],
@@ -88,9 +88,9 @@ export function OverviewAnalyticsView() {
       backgroundImage: '/assets/images/places/ncr.jpg',
       map: '/assets/images/maps/ncr.png',
       games: [
-        { name: '3D', image: '/assets/images/games/2d.png', color: 'blue' },
-        { name: 'EZ2', image: '/assets/images/games/2d.png', color: 'green' },
-        { name: '2D', image: '/assets/images/games/2d.png', color: 'orange' },
+        { name: '3D', image: '/assets/images/games/3D_lotto.png', color: 'blue' },
+        { name: 'EZ2', image: '/assets/images/games/EZ2_lotto.png', color: 'green' },
+        { name: '2D', image: '/assets/images/games/2D_lotto.png', color: 'orange' },
       ],
     },
     {
@@ -100,7 +100,7 @@ export function OverviewAnalyticsView() {
       backgroundPosition: 'center right',
       backgroundImage: '/assets/images/places/ncr.jpg',
       map: '/assets/images/maps/region-4-a.png',
-      games: [{ name: '6/42', image: '/assets/images/games/2d.png', color: 'purple' }],
+      games: [{ name: '6/42', image: '/assets/images/games/6_42_lotto.png', color: 'purple' }],
     },
     {
       regionName: 'Central Visayas',
@@ -109,7 +109,9 @@ export function OverviewAnalyticsView() {
       backgroundPosition: 'center right',
       backgroundImage: '/assets/images/places/ncr.jpg',
       map: '/assets/images/maps/region-7.png',
-      games: [],
+      games: [{ name: '3D', image: '/assets/images/games/3D_lotto.png', color: 'blue' },
+        { name: 'EZ2', image: '/assets/images/games/EZ2_lotto.png', color: 'green' },
+        { name: '2D', image: '/assets/images/games/2D_lotto.png', color: 'orange' },],
     },
     {
       regionName: 'Davao Region',

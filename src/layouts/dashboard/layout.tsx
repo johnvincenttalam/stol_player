@@ -2,8 +2,9 @@ import type { Breakpoint } from '@mui/material/styles';
 
 import { merge } from 'es-toolkit';
 import { Icon } from '@iconify/react';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useBoolean } from 'minimal-shared/hooks';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
@@ -137,22 +138,73 @@ export function DashboardLayout({
     );
   };
 
-   const [value, setValue] = React.useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [value, setValue] = useState(location.pathname);
+
+  // Sync value with current path
+  useEffect(() => {
+    setValue(location.pathname);
+  }, [location.pathname]);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+    navigate(newValue);
+  };
 
   const renderFooter = () => (
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 'var(--layout-nav-zIndex)' }} elevation={3}>
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      >
-        <BottomNavigationAction label="Home" icon={<Icon icon="solar:home-2-line-duotone" width="22" height="22" />} />
-        <BottomNavigationAction label="Results" icon={<Icon icon="fluent:number-circle-8-24-regular" width="22" height="22" />} />
-        <BottomNavigationAction label="Payouts" icon={<Icon icon="solar:money-bag-line-duotone" width="22" height="22" />} />
-        <BottomNavigationAction label="Wallet" icon={<Icon icon="solar:wallet-line-duotone" width="22" height="22" />} />
-        <BottomNavigationAction label="Account" icon={<Icon icon="solar:user-rounded-line-duotone" width="22" height="22" />} />
+    // <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, display: { xs: 'block', lg: 'none' }, zIndex: 9 }} elevation={3}>
+    //   <BottomNavigation
+    //     showLabels
+    //     value={value}
+    //     onChange={(event, newValue) => {
+    //       setValue(newValue);
+    //     }}
+    //   >
+    //     <BottomNavigationAction label="Home" icon={<Icon icon="solar:home-2-line-duotone" width="22" height="22" />} />
+    //     <BottomNavigationAction label="Results" icon={<Icon icon="fluent:number-circle-8-24-regular" width="22" height="22" />} />
+    //     <BottomNavigationAction label="Payouts" icon={<Icon icon="solar:money-bag-line-duotone" width="22" height="22" />} />
+    //     <BottomNavigationAction label="Wallet" icon={<Icon icon="solar:wallet-line-duotone" width="22" height="22" />} />
+    //     <BottomNavigationAction label="Account" icon={<Icon icon="solar:user-rounded-line-duotone" width="22" height="22" />} />
+    //   </BottomNavigation>
+    // </Paper>
+    <Paper
+      sx={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        display: { xs: 'block', lg: 'none' },
+        zIndex: 9,
+      }}
+      elevation={3}
+    >
+      <BottomNavigation value={value} onChange={handleChange} showLabels>
+        <BottomNavigationAction
+          label="Home"
+          value="/"
+          icon={<Icon icon="solar:home-2-line-duotone" width="22" height="22" />}
+        />
+        <BottomNavigationAction
+          label="Results"
+          value="/results"
+          icon={<Icon icon="fluent:number-circle-8-24-regular" width="22" height="22" />}
+        />
+        <BottomNavigationAction
+          label="Payouts"
+          value="/payouts"
+          icon={<Icon icon="solar:money-bag-line-duotone" width="22" height="22" />}
+        />
+        <BottomNavigationAction
+          label="Wallet"
+          value="/wallet"
+          icon={<Icon icon="solar:wallet-line-duotone" width="22" height="22" />}
+        />
+        <BottomNavigationAction
+          label="Account"
+          value="/account"
+          icon={<Icon icon="solar:user-rounded-line-duotone" width="22" height="22" />}
+        />
       </BottomNavigation>
     </Paper>
   );
