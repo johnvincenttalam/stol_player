@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Box, Typography, Stack, Grid, Card } from '@mui/material';
 
@@ -33,6 +34,8 @@ export const LocalGames: React.FC<LocalGamesProps> = ({ data }) => (
         }}
       >
         <Card
+          component={Link}
+          to={`/region-games/${region.regionCode.toLowerCase()}`}
           className={`local-game-card-${region.regionCode.toLowerCase()}`}
           sx={{
             width: '100%',
@@ -46,6 +49,7 @@ export const LocalGames: React.FC<LocalGamesProps> = ({ data }) => (
             flexDirection: 'column',
             justifyContent: 'space-between',
             cursor: 'pointer',
+            textDecoration: 'none',
             transition: 'transform 0.2s ease-in-out',
             '&:hover': {
               transform: 'translateY(-2px)',

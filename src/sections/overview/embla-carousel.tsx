@@ -52,7 +52,7 @@ export const EmblaCarousel = () => {
       <Box display="flex" className="embla__container">
         {slides.map((slide, index) => (
           <Box key={index} flex="0 0 100%" sx={{ scrollSnapAlign: 'start' }}>
-            <Card variant="outlined" sx={{ borderRadius: 0 }}>
+            <Card variant="outlined" sx={{ borderRadius: 0, boxShadow: 0 }}>
               <CardMedia
                 sx={{ height: 'auto', aspectRatio: '16/9' }}
                 image={slide.image}
@@ -62,33 +62,6 @@ export const EmblaCarousel = () => {
           </Box>
         ))}
       </Box>
-
-      {/* Navigation Arrows */}
-      {/* <IconButton
-        onClick={scrollPrev}
-        sx={{
-          position: 'absolute',
-          top: '50%',
-          left: 8,
-          transform: 'translateY(-50%)',
-          zIndex: 1,
-        }}
-      >
-        <Icon icon="solar:alt-arrow-left-outline" width="24" height="24" />
-      </IconButton>
-
-      <IconButton
-        onClick={scrollNext}
-        sx={{
-          position: 'absolute',
-          top: '50%',
-          right: 8,
-          transform: 'translateY(-50%)',
-          zIndex: 1,
-        }}
-      >
-       <Icon icon="solar:alt-arrow-right-outline" width="24" height="24" />
-      </IconButton> */}
 
       {/* Pagination Dots */}
       <Stack direction="row" justifyContent="center" mt={2}>

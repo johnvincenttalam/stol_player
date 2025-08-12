@@ -85,8 +85,7 @@ export function DashboardLayout({
           <Button
             variant="contained"
             size="small"
-            color="warning"
-            sx={{ borderRadius: '999px', textWrap: 'nowrap', px: 2, height: 32 }}
+            sx={{ bgcolor: '#FFC300', color: '#000', borderRadius: '999px', textWrap: 'nowrap', px: 2, height: 32 }}
           >
             Download App
           </Button>

@@ -43,7 +43,7 @@ export const NationalGames: React.FC<NationalGamesProps> = ({
   gamesData, 
   onPlayClick 
 }) => (
-  <Box sx={{ mb: 3 }}>
+  <Box>
     <Stack spacing={2}>
       {gamesData.map((game, index) => (
         <Card key={index} sx={{ backgroundColor: '#fff', borderRadius: 2 }}>
